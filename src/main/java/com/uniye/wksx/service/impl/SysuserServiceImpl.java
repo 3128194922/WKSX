@@ -17,18 +17,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysuserServiceImpl extends ServiceImpl<SysuserMapper, Sysuser> implements ISysuserService {
+
     @Override
     public Sysuser login(Sysuser sysuser) {
-        // 校验数据库中是否有对应的账号
-        QueryWrapper<Sysuser> wrapper = new QueryWrapper<>();
-        wrapper.eq("username", sysuser.getUsername());
-        Sysuser result = this.getOne(wrapper);
-
-        // 如果用户存在且密码匹配
-        if (result != null && result.getPassword().equals(sysuser.getPassword())) {
-            return result; // 登录成功返回用户信息
+        //校验数据库中是否有对应的账号
+        QueryWrapper wrapper=new QueryWrapper<Sysuser>();
+        wrapper.eq("username",sysuser.getUsername());
+        Sysuser result=this.getOne(wrapper);
+        if(result!=null) {
+            //如果有，对比密码是否一样
+            if(result.getUsername().equals(sysuser.getUsername())){
+                //如果密码一样登陆成功
+                return sysuser;
+            }
         }
-
-        return null; // 登录失败返回null
+        return null;
     }
 }
