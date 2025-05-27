@@ -37,4 +37,22 @@ public class SysuserController {
         }
     }
 
+    @PostMapping("/add")
+    public EasyResult addUser(@RequestBody Sysuser sysuser) {
+        boolean result = sysuserService.save(sysuser);
+        return result ? EasyResult.success() : EasyResult.error("添加用户失败");
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public EasyResult deleteUser(@PathVariable Integer id) {
+        boolean result = sysuserService.removeById(id);
+        return result ? EasyResult.success() : EasyResult.error("删除用户失败");
+    }
+
+    @PutMapping("/update")
+    public EasyResult updateUser(@RequestBody Sysuser sysuser) {
+        boolean result = sysuserService.updateById(sysuser);
+        return result ? EasyResult.success() : EasyResult.error("更新用户失败");
+    }
+
 }
