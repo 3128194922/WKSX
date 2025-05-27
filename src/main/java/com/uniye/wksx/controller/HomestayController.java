@@ -1,7 +1,6 @@
-package com.uniye.wksx.minsu.controller;
+package com.uniye.wksx.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -9,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
  *  前端控制器
  * </p>
  *
- * @author WKX
+ * @author YY
  * @since 2025-05-26
  */
 @RestController
-@RequestMapping("/room")
-public class RoomController {
+@RequestMapping("/homestay")
+public class HomestayController {
 
 }
