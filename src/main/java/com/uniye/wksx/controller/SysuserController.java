@@ -16,43 +16,40 @@ import java.util.List;
  * @author YY
  * @since 2025-05-26
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/sysuser")
 public class SysuserController {
+
     @Autowired
     ISysuserService sysuserService;
-
     @RequestMapping("list")
-    public EasyResult getSysuser(){
-        List<Sysuser> list=sysuserService.list();
+    public EasyResult getSysuser() {
+        List<Sysuser> list = sysuserService.list();
         return EasyResult.success(list);
     }
-    @GetMapping("/login")
-    public EasyResult login(Sysuser sysuser){
-        Sysuser loginuser=sysuserService.login(sysuser);
-        if (loginuser!=null){
+    @RequestMapping("login")
+    public EasyResult login(Sysuser sysuser) {
+        Sysuser loginuser = sysuserService.login(sysuser);
+        if (loginuser != null) {
             return EasyResult.success(loginuser);
-        }else {
+        } else {
             return EasyResult.error("登录失败");
         }
     }
-
-    @PostMapping("/add")
-    public EasyResult addUser(@RequestBody Sysuser sysuser) {
-        boolean result = sysuserService.save(sysuser);
-        return result ? EasyResult.success() : EasyResult.error("添加用户失败");
+    @RequestMapping("add")
+    public EasyResult add(@RequestBody Sysuser sysuser) {
+        sysuserService.save(sysuser);
+        return EasyResult.success();
     }
-
-    @DeleteMapping("/delete/{id}")
-    public EasyResult deleteUser(@PathVariable Integer id) {
-        boolean result = sysuserService.removeById(id);
-        return result ? EasyResult.success() : EasyResult.error("删除用户失败");
+    @RequestMapping("delete/{id}")
+    public EasyResult delete(@PathVariable int id){
+        sysuserService.removeById(id);
+        return EasyResult.success();
     }
-
-    @PutMapping("/update")
-    public EasyResult updateUser(@RequestBody Sysuser sysuser) {
-        boolean result = sysuserService.updateById(sysuser);
-        return result ? EasyResult.success() : EasyResult.error("更新用户失败");
+    @RequestMapping("edit")
+    public EasyResult update(@RequestBody Sysuser sysuser){
+        sysuserService.updateById(sysuser);
+        return EasyResult.success();
     }
-
 }
