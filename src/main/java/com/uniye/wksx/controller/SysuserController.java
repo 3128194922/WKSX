@@ -42,7 +42,7 @@ public class SysuserController {
         sysuserService.save(sysuser);
         return EasyResult.success();
     }
-    @RequestMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public EasyResult delete(@PathVariable int id){
         sysuserService.removeById(id);
         return EasyResult.success();

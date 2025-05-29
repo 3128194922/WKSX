@@ -4,6 +4,12 @@ const API={
     getUsers:()=>{
         return http({url:'http://localhost:8080/sysuser/list',method:'get'});
     },
+    addUsers:(data)=>{
+        return http({url:'http://localhost:8080/sysuser/add',method:'post',data:data});
+    },
+    delUsers:(id)=>{
+        return http({url:`http://localhost:8080/sysuser/delete/${id}`,method:'delete'});
+    },
     get:(url,params)=>{return http({url:url,method:'get',params:params})},
     del:(url,id)=>{
         url=url+'/'+id;//url    /api/satff
